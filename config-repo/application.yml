@@ -1,0 +1,28 @@
+#application 统一配置
+logging:
+  #日志存放位置
+  file: logs/${spring.application.name}.log
+
+server:
+  undertow:
+    buffer-size: 1024
+    direct-buffers: true
+
+#不配置的话服务之间调用拿不到Token
+#hystrix.command.default.execution.isolation.strategy: SEMAPHORE
+#hystrix.share-security-context: true
+
+---
+
+spring:
+  profiles: default
+
+---
+
+spring:
+  profiles: dev
+
+---
+
+spring:
+  profiles: prod

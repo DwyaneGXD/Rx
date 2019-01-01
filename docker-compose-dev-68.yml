@@ -1,0 +1,55 @@
+version: '3'
+services:
+  #配置中心
+  config:
+    build: ./config/
+    volumes:
+      - ./config/build/libs:/tmp
+      - ./logs:/tmp/logs
+    hostname: config
+    ports:
+      - "8889:8889"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+
+  #网关
+  edge:
+    build: ./edge/
+    volumes:
+      - ./edge/build/libs:/tmp
+      - ./logs:/tmp/logs
+    hostname: edge
+    ports:
+      - "9090:9000"
+    links:
+      - config
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+
+  #购物车
+  cart:
+    build: ./cart/
+    volumes:
+      - ./cart/build/libs:/tmp
+      - ./logs:/tmp/logs
+    hostname: cart
+    ports:
+      - "8082:8082"
+    links:
+      - config
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+
+  #产品商品
+  product:
+    build: ./product/
+    volumes:
+      - ./product/build/libs:/tmp
+      - ./logs:/tmp/logs
+    hostname: product
+    ports:
+      - "8085:8085"
+    links:
+      - config
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev

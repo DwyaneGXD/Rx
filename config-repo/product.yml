@@ -1,0 +1,62 @@
+server:
+  port: 8085
+
+#mybatis设置
+mybatis:
+  #mybatis映射文件位置
+  mapper-locations: classpath:mybatis/**/*.xml
+  #实体文件文件位置
+  type-aliases-package: com.oasis.rx.product.entity
+  configuration:
+    #全局映射缓存
+    cache-enabled: true
+    #查询时,关闭关联对象及时加载提高性能
+    lazy-loading-enabled: false
+    #设置关联对象加载的形态,此处为按需加载字段(加载字段由SQL指定),不会加载关联表的所有字段提高性能
+    aggressive-lazy-loading: false
+    #对于位置的SQL查询,允许返回不同的结果集以达到通用的效果
+    multiple-result-sets-enabled: true
+    #允许使用列标签代替列名
+    use-column-label: true
+    #允许使用自定义的主键值(比如由程序生成的UUID 32位编码作为键值), 数据表的pk生成策略将被覆盖
+    use-generated-keys: true
+    #给予被嵌套的resultMap以字段-属性的映射支持
+    auto-mapping-behavior: partial
+    #对于批量更新操作缓存SQL以提高性能
+    default-executor-type: reuse
+    #数据库超过30000秒仍未响应则超时
+    default-statement-timeout: 30000
+
+---
+
+spring:
+  profiles: default,dev
+  #数据源
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: oasisadmin
+    url: jdbc:mysql://10.26.26.204:3306/dispensary?useSSL=false
+    #url: jdbc:mysql://60.205.106.190:3306/dispensary?useSSL=false
+    hikari:
+      connection-test-query: SELECT 1
+      maximum-pool-size: 20
+      max-lifetime: 600000
+      idle-timeout: 570000
+
+---
+
+spring:
+  profiles: prod
+  #数据源
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    username: oasis
+    password: Oasis2017@!)^DB
+    url: jdbc:mysql://rm-2ze40w989fnngl2u3.mysql.rds.aliyuncs.com/dispensary?useSSL=false
+    hikari:
+      connection-test-query: SELECT 1
+      maximum-pool-size: 20
+      max-lifetime: 1800000

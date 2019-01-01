@@ -1,0 +1,101 @@
+//插件脚本
+buildscript
+{
+  ext
+  {
+    springBootVersion = '1.5.9.RELEASE'
+    springCloudVersion = 'Edgware.RELEASE'
+  }
+
+  repositories
+  {
+    mavenLocal()
+    jcenter()
+    mavenCentral()
+    maven { url "https://repo.spring.io/snapshot" }
+    maven { url "https://repo.spring.io/milestone" }
+  }
+
+  dependencies
+  {
+    classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+  }
+}
+
+//gradle版本
+task createWrapper(type: Wrapper) {
+  gradleVersion = '4.4.1'
+}
+
+allprojects
+{
+  group = 'com.oasis.rx'
+  version = '1.0'
+}
+
+//子项目公用部分
+subprojects
+{
+  apply plugin: 'idea'
+  apply plugin: 'java'
+  apply plugin: 'org.springframework.boot'
+
+  //全局去除依赖
+  configurations
+  {
+    compile.exclude module: 'spring-boot-starter-tomcat'
+  }
+
+  ext
+  {
+    bootName = 'org.springframework.boot'
+    cloudName = 'org.springframework.cloud'
+    //Axon版本
+    axonVersion = '3.0.7'
+    //Swagger版本
+    swaggerVersion = '2.7.0'
+    //Vavr版本
+    vavrVersion = '0.9.2'
+    //FastJSON版本
+    fastjsonVersion = '1.2.40'
+    //MyBatis与Spring-Boot集成
+    mybatisVersion = '1.3.1'
+    //MyBatis分页插件
+    pagehelperVersion = '4.0.0'
+    lang3Version = '3.4'
+    //cxf版本
+    cxfVersion = '3.2.2'
+  }
+
+  //Java版本
+  sourceCompatibility = JavaVersion.VERSION_1_8
+  targetCompatibility = JavaVersion.VERSION_1_8
+
+  repositories
+  {
+    mavenLocal()
+    jcenter()
+    mavenCentral()
+    maven { url "https://repo.spring.io/snapshot" }
+    maven { url "https://repo.spring.io/milestone" }
+  }
+
+  //公用jar
+  dependencies
+  {
+    //应用信息
+    compile "${bootName}:spring-boot-starter-actuator",
+    //简化代码
+    "org.projectlombok:lombok",
+    //权限管理
+    "${cloudName}:spring-cloud-starter-oauth2"
+  }
+
+  dependencyManagement
+  {
+    imports
+    {
+      mavenBom "${cloudName}:spring-cloud-dependencies:${springCloudVersion}"
+    }
+  }
+}

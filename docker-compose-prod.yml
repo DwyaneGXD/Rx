@@ -1,0 +1,138 @@
+version: '3'
+services:
+  #配置中心
+  config:
+    build: ./config/
+    volumes:
+      - ./config/build/libs:/tmp
+      - ./logs:/tmp/logs
+    hostname: config
+    ports:
+      - "8889:8889"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+
+  edge:
+    build: ./edge/
+    volumes:
+      - ./edge/build/libs:/tmp
+      - ./logs:/tmp/logs
+    hostname: edge
+    ports:
+      - "9090:9000"
+    links:
+      - config
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+
+  #订单
+  order:
+    build: ./order/
+    volumes:
+      - ./order/build/libs:/tmp
+      - ./logs:/tmp/logs
+    hostname: order
+    ports:
+      - "8081:8081"
+    links:
+      - config
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+
+  #购物车
+  cart:
+    build: ./cart/
+    volumes:
+      - ./cart/build/libs:/tmp
+      - ./logs:/tmp/logs
+    hostname: cart
+    ports:
+      - "8082:8082"
+    links:
+      - config
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+
+  #产品商品
+  product:
+    build: ./product/
+    volumes:
+      - ./product/build/libs:/tmp
+      - ./logs:/tmp/logs
+    hostname: product
+    ports:
+      - "8085:8085"
+    links:
+      - config
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+
+  #用户
+  user:
+    build: ./user/
+    volumes:
+      - ./user/build/libs:/tmp
+      - ./logs:/tmp/logs
+    hostname: user
+    ports:
+      - "8086:8086"
+    links:
+      - config
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+
+  #支付
+  payment:
+    build: ./payment/
+    volumes:
+      - ./payment/build/libs:/tmp
+      - ./logs:/tmp/logs
+    hostname: payment
+    ports:
+      - "8087:8087"
+    links:
+      - config
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+
+  #物流
+  logistic:
+    build: ./logistic/
+    volumes:
+      - ./logistic/build/libs:/tmp
+      - ./logs:/tmp/logs
+    hostname: logistic
+    ports:
+      - "8092:8092"
+    links:
+      - config
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+
+  #送药到家
+  home:
+    build: ./home/
+    volumes:
+      - ./home/build/libs:/tmp
+      - ./logs:/tmp/logs
+    hostname: home
+    ports:
+      - "8094:8094"
+    links:
+      - config
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+
+  #体检
+  physical:
+    build: ./physical/
+    volumes:
+      - ./physical/build/libs:/tmp
+      - ./logs:/tmp/logs
+    hostname: physical
+    ports:
+      - "8095:8095"
+    links:
+      - config
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod

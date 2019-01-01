@@ -1,0 +1,12 @@
+rootProject.name = 'Rx'
+
+//网关
+include 'edge'
+//核心组件
+include 'core'
+//配置管理
+include 'config'
+//产品
+include 'product'
+
+

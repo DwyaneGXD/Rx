@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.oasis.rx.product.dao.CommodityDao">
+  <insert id="create" parameterType="com.oasis.rx.product.entity.CommodityEntity">
+    INSERT INTO commodity_info(
+      id,
+      `name`,
+      price,
+      quantity,
+      operator_id,
+      remark
+    ) VALUES {
+      #{id},
+      #{name},
+      #{price},
+      #{quantity},
+      #{operatorId},
+      #{remark}
+    }
+  </insert>
+
+  <delete id="deleted" parameterType="java.lang.String">
+    UPDATE commodity SET deleted = 1 WHERE id = #{id} AND deleted = 0
+  </delete>
+
+  <update id="update" parameterType="com.oasis.rx.product.entity.CommodityEntity">
+    UPDATE commodity_info
+    <set>
+      id = #{id},
+      `name` = #{name},
+      price = #{price},
+      quantity = #{quantity},
+      operator_id = #{operatorId},
+      remark = #{remark}
+    </set>
+    WHERE id = #{id}
+  </update>
+
+  <select id="get" parameterType="java.lang.String" resultType="com.oasis.rx.product.entity.CommodityEntity">
+    SELECT * FROM commodity_info WHERE id = #{id}
+  </select>
+
+  <select id="existed" parameterType="java.lang.String" resultType="java.lang.Boolean">
+    SELECT EXISTS(
+      SELECT 1 FROM commodity_info WHERE deleted = 0
+      <if test="id != null or id != ''">
+        AND id = #{id}
+      </if>
+    )
+  </select>
+</mapper>

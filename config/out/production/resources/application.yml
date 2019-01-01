@@ -1,0 +1,66 @@
+spring:
+  #云配置
+  cloud:
+    config:
+      server:
+        git:
+          uri: http://60.205.106.190:3000/ryze/Rx
+          search-paths: config-repo
+      label: master
+      profile: ${spring.profiles}
+
+security:
+  basic:
+    enabled: false
+  sessions: stateless
+  enable-csrf: false
+
+---
+
+spring:
+  profiles: default
+  cloud:
+    #Consul服务中心
+    consul:
+      host: localhost
+      discovery:
+        prefer-agent-address: true
+        prefer-ip-address: true
+
+server:
+  #端口
+  port: 8888
+
+---
+
+spring:
+  profiles: dev
+  cloud:
+    #Consul服务中心
+    consul:
+      host: 10.26.106.177
+      discovery:
+        prefer-agent-address: true
+        prefer-ip-address: true
+
+
+server:
+  #端口
+  port: 8889
+
+---
+
+spring:
+  profiles: prod
+  cloud:
+    #Consul服务中心
+    consul:
+      host: 39.107.54.54
+      discovery:
+        prefer-agent-address: true
+        prefer-ip-address: true
+
+
+server:
+  #端口
+  port: 8889

@@ -1,0 +1,35 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.oasis.rx.core.properties.RxRabbitProperties",
+      "name": "rx.rabbit",
+      "type": "com.oasis.rx.core.properties.RxRabbitProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.oasis.rx.core.properties.RxRabbitProperties",
+      "defaultValue": "",
+      "name": "rx.rabbit.delay-exchange",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.oasis.rx.core.properties.RxRabbitProperties",
+      "defaultValue": "dead.letter.queue",
+      "name": "rx.rabbit.delay-queue",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.oasis.rx.core.properties.RxRabbitProperties",
+      "defaultValue": "Rx.EventBus",
+      "name": "rx.rabbit.exchange",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.oasis.rx.core.properties.RxRabbitProperties",
+      "name": "rx.rabbit.queue",
+      "type": "java.lang.String"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+dependencies
+{
+  //Spring-Web支持
+  compile "${bootName}:spring-boot-starter-web",
+  //服务注册
+  "${cloudName}:spring-cloud-starter-consul-discovery",
+  //容器 Undertow
+  "${bootName}:spring-boot-starter-undertow",
+  //配置管理
+  "${cloudName}:spring-cloud-config-client"
+  //Axon集成Spring-Cloud 数据库MongoDB 消息中间价RabbitMQ Start
+  compile "${bootName}:spring-boot-starter-amqp",
+  "org.axonframework:axon-spring-boot-starter:${axonVersion}",
+//  compile "org.axonframework:axon-distributed-commandbus-springcloud:${axonVersion}"
+  "org.axonframework:axon-mongo:${axonVersion}",
+  "org.axonframework:axon-amqp:${axonVersion}",
+  "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
+  //Axon集成Spring-Cloud 数据库MongoDB 消息中间价RabbitMQ End
+  //Java函数式增强 Start
+  compile "io.vavr:vavr:${vavrVersion}",
+  "io.vavr:vavr-jackson:${vavrVersion}"
+  //Java函数式增强 End
+  //日期时间处理
+  compileOnly "joda-time:joda-time",
+  //Swagger2
+  "io.springfox:springfox-swagger2:${swaggerVersion}",
+  //Redis缓存
+  "${bootName}:spring-boot-starter-data-redis",
+  //自定义元数据支持
+  "${bootName}:spring-boot-configuration-processor",
+  "${cloudName}:spring-cloud-starter-openfeign"
+}
+
+bootRepackage.enabled = false

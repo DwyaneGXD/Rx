@@ -1,0 +1,50 @@
+spring:
+  #应用名
+  application:
+    name: edge
+  #云配置
+  cloud:
+    config:
+      label: master
+      discovery:
+        enabled: true
+        service-id: config
+      profile: ${spring.profiles}
+      failFast: true
+
+---
+
+spring:
+  profiles: default
+  cloud:
+    #Consul服务中心
+    consul:
+      host: localhost
+      discovery:
+        prefer-agent-address: true
+        prefer-ip-address: true
+
+---
+
+spring:
+  profiles: dev
+  cloud:
+    #Consul服务中心
+    consul:
+      host: 60.205.151.68
+      discovery:
+        prefer-agent-address: true
+        prefer-ip-address: true
+
+---
+
+spring:
+  profiles: prod
+  cloud:
+    #Consul服务中心
+    consul:
+      host: 39.107.54.54
+      discovery:
+        prefer-agent-address: true
+        prefer-ip-address: true
+
