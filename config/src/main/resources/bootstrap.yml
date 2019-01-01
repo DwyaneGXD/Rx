@@ -3,10 +3,10 @@ spring:
   application:
     name: config
 
-#加密
-encrypt:
-  key-store:
-    location: classpath:/config.jks
-    password: oasisadmin
-    alias: oasis_config
-    secret: oasisadmin
+##加密
+#encrypt:
+#  key-store:
+#    location: classpath:/config.jks
+#    password: oasisadmin
+#    alias: oasis_config
+#    secret: oasisadmin

@@ -4,16 +4,10 @@ spring:
     config:
       server:
         git:
-          uri: http://60.205.106.190:3000/ryze/Rx
+          uri: https://github.com/DwyaneGXD/Rx
           search-paths: config-repo
       label: master
       profile: ${spring.profiles}
-
-security:
-  basic:
-    enabled: false
-  sessions: stateless
-  enable-csrf: false
 
 ---
 
