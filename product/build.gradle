@@ -1,26 +1,24 @@
-dependencies
-{
-  //泓华基础组件
-  compile project(":core")
-  //数据库支持
-  compile "com.zaxxer:HikariCP"
-  runtime "mysql:mysql-connector-java"
-  compile "org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisVersion}"
-  //Feign
-  compile "${cloudName}:spring-cloud-starter-openfeign"
-  //UUID
-  compile "commons-codec:commons-codec"
-  compile "org.apache.commons:commons-lang3:${lang3Version}"
-  //分页
-  compile "com.github.pagehelper:pagehelper:${pagehelperVersion}"
-  //Swagger
-  compile "io.springfox:springfox-swagger2:${swaggerVersion}"
-  //阿里云 Start
-  compile "com.aliyun:aliyun-java-sdk-core:3.0.6",
-  "com.aliyun:aliyun-java-sdk-mts:2.1.6"
-  compile("com.aliyun.oss:aliyun-sdk-oss:2.3.0")
-  {
-    exclude module: "httpclient"
-  }
-  //阿里云 End
+dependencies {
+    //泓华基础组件
+    compile project(":core")
+    //数据库支持
+    compile "com.zaxxer:HikariCP"
+    runtime "mysql:mysql-connector-java"
+    compile "org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisVersion}"
+    //Feign
+    compile "${cloudName}:spring-cloud-starter-openfeign"
+    //UUID
+    compile "commons-codec:commons-codec"
+    compile "org.apache.commons:commons-lang3:${lang3Version}"
+    //分页
+    compile "com.github.pagehelper:pagehelper:${pagehelperVersion}"
+    //Swagger
+    compile "io.springfox:springfox-swagger2:${swaggerVersion}"
+    //阿里云 Start
+    compile "com.aliyun:aliyun-java-sdk-core:3.0.6",
+            "com.aliyun:aliyun-java-sdk-mts:2.1.6"
+    compile("com.aliyun.oss:aliyun-sdk-oss:2.3.0") {
+        exclude module: "httpclient"
+    }
+    //阿里云 End
 }

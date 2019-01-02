@@ -37,8 +37,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: oasisadmin
-    url: jdbc:mysql://10.26.26.204:3306/dispensary?useSSL=false
-    #url: jdbc:mysql://60.205.106.190:3306/dispensary?useSSL=false
+    url: jdbc:mysql://192.168.136.136:3306/rx?useSSL=false
     hikari:
       connection-test-query: SELECT 1
       maximum-pool-size: 20

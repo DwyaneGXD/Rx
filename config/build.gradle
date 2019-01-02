@@ -1,8 +1,8 @@
 dependencies {
-  //配置管理
-  compile "${cloudName}:spring-cloud-config-server",
-  //服务注册
-  "${cloudName}:spring-cloud-starter-consul-discovery",
-  //容器 Undertow
-  "${bootName}:spring-boot-starter-undertow"
+    //配置管理
+    compile "${cloudName}:spring-cloud-config-server",
+            //服务注册
+            "${cloudName}:spring-cloud-starter-consul-discovery",
+            //容器 Undertow
+            "${bootName}:spring-boot-starter-undertow"
 }
